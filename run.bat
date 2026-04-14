@@ -103,27 +103,28 @@ echo.
 
 :: Check and install Python dependencies
 echo [1/2] Checking dependencies...
+
 python -c "import PyQt6" >nul 2>&1
+if %errorlevel% equ 0 goto :pyqt6_ok
+echo       PyQt6 not found. Installing...
+python -m pip install PyQt6
 if %errorlevel% neq 0 (
-    echo       PyQt6 not found. Installing...
-    python -m pip install PyQt6 --quiet
-    if %errorlevel% neq 0 (
-        echo [ERROR] Failed to install PyQt6.
-        pause
-        exit /b 1
-    )
+    echo [ERROR] Failed to install PyQt6.
+    pause
+    exit /b 1
 )
+:pyqt6_ok
 
 python -c "import pydub" >nul 2>&1
+if %errorlevel% equ 0 goto :pydub_ok
+echo       pydub not found. Installing...
+python -m pip install pydub
 if %errorlevel% neq 0 (
-    echo       pydub not found. Installing...
-    python -m pip install pydub --quiet
-    if %errorlevel% neq 0 (
-        echo [ERROR] Failed to install pydub.
-        pause
-        exit /b 1
-    )
+    echo [ERROR] Failed to install pydub.
+    pause
+    exit /b 1
 )
+:pydub_ok
 
 echo       All dependencies OK.
 echo.
