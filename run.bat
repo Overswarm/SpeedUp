@@ -106,7 +106,7 @@ echo [1/2] Checking dependencies...
 python -c "import PyQt6" >nul 2>&1
 if %errorlevel% neq 0 (
     echo       PyQt6 not found. Installing...
-    pip install PyQt6 --quiet
+    python -m pip install PyQt6 --quiet
     if %errorlevel% neq 0 (
         echo [ERROR] Failed to install PyQt6.
         pause
@@ -117,7 +117,7 @@ if %errorlevel% neq 0 (
 python -c "import pydub" >nul 2>&1
 if %errorlevel% neq 0 (
     echo       pydub not found. Installing...
-    pip install pydub --quiet
+    python -m pip install pydub --quiet
     if %errorlevel% neq 0 (
         echo [ERROR] Failed to install pydub.
         pause
