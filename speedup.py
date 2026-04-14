@@ -4,6 +4,11 @@ import subprocess
 import shutil
 from pathlib import Path
 
+# Add bundled ffmpeg to PATH if it exists next to this script
+_bundled_ffmpeg = Path(__file__).parent / "ffmpeg" / "bin"
+if _bundled_ffmpeg.is_dir():
+    os.environ["PATH"] = str(_bundled_ffmpeg) + os.pathsep + os.environ.get("PATH", "")
+
 from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
